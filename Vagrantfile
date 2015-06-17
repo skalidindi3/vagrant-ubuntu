@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Copy over dotfiles
   for f in DOTFILES  do
-    config.vm.provision "file", source: f, destination: File.basename(f) if File.exist?(File.expand_path(f))
+    config.vm.provision 'file', source: f, destination: File.basename(f) if File.exist?(File.expand_path(f))
   end
 
   # Run provisioning script
