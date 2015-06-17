@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-readonly LIBS_FOLDER=~/libs
+readonly ANTIGEN_FOLDER=~/.antigen
 
 function CHECK_LINUX() {
   if [ $(uname) != "Linux" ]; then
@@ -36,9 +36,39 @@ function CHECK_GIT() {
   fi
 }
 
+function TURN_OFF_GITHUB_HOST_CHECKING() {
+  echo "Turning off StrictHostKeyChecking for github ..."
+  if ! $(grep "StrictHostKeyChecking no" ~/.ssh/config &> /dev/null); then
+    echo -e "Host github.com\n\tStrictHostKeyChecking no" >> ~/.ssh/config
+    echo "Turned off StrictHostKeyChecking for github."
+  else
+    echo "StrictHostKeyChecking already turned off for github."
+  fi
+  # NOTE: could check specific access with `git ls-remote "$EMBEDDED_REPO_LOC" &> /dev/null`
+}
+
+function TURN_ON_GITHUB_HOST_CHECKING() {
+  echo "Turning on StrictHostKeyChecking for github ..."
+  sed -i 'N;s/Host github.com\n.StrictHostKeyChecking no//' ~/.ssh/config
+  echo "Turned on StrictHostKeyChecking for github."
+}
+
+function SET_ZSH() {
+  TURN_OFF_GITHUB_HOST_CHECKING
+  echo "Setting zsh ..."
+  sudo apt-get install -y zsh
+  mkdir -p $ANTIGEN_FOLDER
+  cd $ANTIGEN_FOLDER
+  git clone git@github.com:/zsh-users/antigen
+  sudo chsh -s /bin/zsh vagrant
+  echo "zsh set."
+  TURN_ON_GITHUB_HOST_CHECKING
+}
+
 main() {
   CHECK_LINUX
   GET_BASE_PKGS
+  SET_ZSH
   CHECK_GIT
 }
 

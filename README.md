@@ -5,4 +5,4 @@ A quick skeleton for setting up a headless 32-bit ubuntu virtual machine for lin
 
 TODO
 ----
-* set up zsh
+* add local dotfiles folder

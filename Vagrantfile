@@ -3,7 +3,7 @@
 
 VAGRANTFILE_API_VERSION = '2'
 
-DOTFILES = ['~/.bash_aliases', '~/.gitconfig', '~/.tmux.conf', '~/.vimrc', '~/.vim']
+DOTFILES = ['~/.bash_aliases', '~/.gitconfig', '~/.tmux.conf', '~/.vimrc', '~/.vim', '~/.zshrc']
 SETUP_FILES = ['./bootstrap.sh']
 
 VBOX_NAME = 'ubuntu-dev'
