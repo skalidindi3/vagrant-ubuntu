@@ -53,13 +53,21 @@ function TURN_ON_GITHUB_HOST_CHECKING() {
   echo "Turned on StrictHostKeyChecking for github."
 }
 
+function GET_ANTIGEN() {
+  if ! [ -e "$ANTIGEN_FOLDER/antigen" ]; then
+    echo "Getting antigen ..."
+    mkdir -p $ANTIGEN_FOLDER
+    cd $ANTIGEN_FOLDER
+    git clone git@github.com:/zsh-users/antigen
+    echo "Done getting antigen."
+  fi
+}
+
 function SET_ZSH() {
   TURN_OFF_GITHUB_HOST_CHECKING
   echo "Setting zsh ..."
   sudo apt-get install -y zsh
-  mkdir -p $ANTIGEN_FOLDER
-  cd $ANTIGEN_FOLDER
-  git clone git@github.com:/zsh-users/antigen
+  GET_ANTIGEN
   sudo chsh -s /bin/zsh vagrant
   echo "zsh set."
   TURN_ON_GITHUB_HOST_CHECKING
