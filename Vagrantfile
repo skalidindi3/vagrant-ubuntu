@@ -27,12 +27,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder 'shared', '/home/vagrant/shared', create: true
 
   # Copy over dotfiles
-  for f in DOTFILES  do
+  DOTFILES.each do |f|
     config.vm.provision 'file', source: f, destination: File.basename(f) if File.exist?(File.expand_path(f))
   end
 
   # Run provisioning script
-  for f in SETUP_FILES  do
+  SETUP_FILES.each do |f|
     config.vm.provision :shell, :privileged => false, :path => f if File.exist?(File.expand_path(f))
   end
 
