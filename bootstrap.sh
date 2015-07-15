@@ -14,12 +14,16 @@ function GET_BASE_PKGS() {
   sudo apt-get update
   sudo apt-get upgrade
   sudo apt-get install -y build-essential   \
+                          gdb               \
                           vim               \
                           git-core          \
                           tmux              \
                           python-serial     \
                           python-matplotlib \
-                          ipython
+                          ipython           \
+                          nodejs            \
+                          nodejs-legacy     \
+                          npm
   echo "Done getting base packages."
 }
 
