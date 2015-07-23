@@ -47,6 +47,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Add USB Controller to VM
     vb.customize ['modifyvm', :id, '--usb', 'on']
+    vb.customize ['modifyvm', :id, '--usbehci', 'on']
 
     # Grant access to specified USB devices
     #vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'FTDI', '--vendorid', FTDI_VENDORID]
