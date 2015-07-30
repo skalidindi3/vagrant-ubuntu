@@ -80,8 +80,8 @@ function SET_ZSH() {
 main() {
   CHECK_LINUX
   GET_BASE_PKGS
-  SET_ZSH
   CHECK_GIT
+  SET_ZSH
 }
 
 main
