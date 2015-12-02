@@ -18,6 +18,7 @@ function GET_BASE_PKGS() {
                           vim               \
                           git-core          \
                           tmux              \
+                          unzip             \
                           python-serial     \
                           python-matplotlib \
                           ipython           \
@@ -25,6 +26,7 @@ function GET_BASE_PKGS() {
                           nodejs-legacy     \
                           npm
   echo "Done getting base packages."
+  # TODO: breakout nodejs & scala deps into functions to mix ix
 }
 
 function CHECK_GIT() {
